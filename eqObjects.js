@@ -6,6 +6,21 @@ const assertEqual = function(actual, expected) {
   }
 };
 
+const eqArrays = function(firstArray, secondArray) {
+  let comparison = false;
+  if (firstArray.length !== secondArray.length) {
+    return false;
+  };
+  for (let i = 0; i < firstArray.length; i++) {
+    if (firstArray[i] === secondArray[i]) {
+      comparison = true;
+    } else {
+      return false;
+    }
+  }
+  return comparison;
+};
+
 // Returns true if both objects have identical keys with identical values.
 // Otherwise you get back a big fat false!
 const eqObjects = function(object1, object2) {
@@ -13,25 +28,19 @@ const eqObjects = function(object1, object2) {
     return false;
   };
   for (let key of Object.keys(object1)) {
-    if (Array.isArray(object1[key])) {
+    if (Array.isArray(object1[key]) && Array.isArray(object1[key])) {
       if (object1[key].length !== object2[key].length) {
         return false;
       };
       for (let i = 0; i < object1[key].length; i++) {
-        // let comparison = false;
-        // if (object1[key][i] === object2[key][i]) {
-        //   comparison = true;
-        // } else {
-        //   comparison = false;
-        //   break;
-        // }
         if (object1[key][i] !== object2[key][i]) {
           return false;
         }
       }
-    };
-    if (object1[key] !== object2[key]) {
+    } else {
+      if (object1[key] !== object2[key]) {
       return false;
+      }
     }
   }
   return true;
@@ -54,7 +63,9 @@ const cd = { c: "1", d: ["2", 3] };
 const dc = { d: ["2", 3], c: "1" };
 eqObjects(cd, dc); // => true
 console.log(eqObjects(cd, dc));
+// assertEqual(cd, dc);
 
 const cd2 = { c: "1", d: ["2", 3, 4] };
 eqObjects(cd, cd2); // => false
 console.log(eqObjects(cd, cd2));
+// assertEqual(cd, cd2);
