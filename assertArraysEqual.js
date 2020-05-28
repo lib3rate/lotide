@@ -23,6 +23,7 @@ const assertArraysEqual = function(firstArray, secondArray) {
       comparison = true;
     } else {
       comparison = false;
+      break;
     }
   }
   if (comparison === true) {

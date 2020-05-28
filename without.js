@@ -14,7 +14,7 @@ const eqArrays = function(firstArray, secondArray) {
 };
 
 const assertArraysEqual = function(firstArray, secondArray) {
-  let comparison = false;
+  let comparison = true;
   if (firstArray.length !== secondArray.length) {
     comparison = false;
   };
@@ -23,6 +23,7 @@ const assertArraysEqual = function(firstArray, secondArray) {
       comparison = true;
     } else {
       comparison = false;
+      break;
     }
   }
   if (comparison === true) {
@@ -57,6 +58,9 @@ assertArraysEqual([1, 2, 3], [1]);
 
 without(["1", "2", "3"], [1, 2, "3"]) // => ["1", "2"]
 assertArraysEqual(["1", "2", "3"], [1, 2, "3"]);
+
+without(["1", "2", "3"], [1, 2, "3"])
+assertArraysEqual(["1", "2", "3"], ["1", "2", 3]);
 
 const words = ["hello", "world", "lighthouse"];
 without(words, ["lighthouse"]); // no need to capture return value for this test case
