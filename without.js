@@ -14,16 +14,17 @@ const eqArrays = function(firstArray, secondArray) {
 };
 
 const assertArraysEqual = function(firstArray, secondArray) {
-  let comparison = true;
+  let comparison = false;
   if (firstArray.length !== secondArray.length) {
     comparison = false;
-  };
-  for (let i = 0; i < firstArray.length; i++) {
-    if (firstArray[i] === secondArray[i]) {
-      comparison = true;
-    } else {
-      comparison = false;
-      break;
+  } else {
+    for (let i = 0; i < firstArray.length; i++) {
+      if (firstArray[i] === secondArray[i]) {
+        comparison = true;
+      } else {
+        comparison = false;
+        break;
+      }
     }
   }
   if (comparison === true) {
@@ -34,8 +35,6 @@ const assertArraysEqual = function(firstArray, secondArray) {
 };
 
 //Why isn't "without" function working with no "flag"?
-//Why isn't assertArraysEqual function working properly?
-//Should I vagrant up/ssh in the terminal in VSCode?
 
 const without = function(source, itemsToRemove) {
   let removedItems = [];
