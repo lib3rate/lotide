@@ -27,9 +27,9 @@ const assertObjectsEqual = function(actual, expected) {
   const inspect = require('util').inspect;
   let comparison = false;
   if (Object.keys(object1).length !== Object.keys(object2).length) {
-    return false;
-  };
-  for (let key of Object.keys(object1)) {
+    comparison = false;
+  } else {
+    for (let key of Object.keys(object1)) {
     if (Array.isArray(object1[key]) && Array.isArray(object1[key])) {
       if (object1[key].length !== object2[key].length) {
         return false;
@@ -41,11 +41,11 @@ const assertObjectsEqual = function(actual, expected) {
       }
     } else {
       if (object1[key] !== object2[key]) {
-      return false;
+        return false;
       }
     }
-  }
-  return true;
+    }
+  }  
   if (comparison === true) {
     console.log(`✅✅✅ Assertion Passed: ${inspect(actual)} === ${inspect(expected)}`);
   } else {
